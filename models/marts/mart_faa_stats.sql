@@ -8,7 +8,6 @@ SUM(diverted) AS dep_diverted, -- how many flights were diverted in total (depar
 SUM(CASE WHEN cancelled = 0 THEN 1 END) AS dep_n_flights_calc, -- how many flights actually occured in total (departures & arrivals)
 COUNT(DISTINCT tail_number) AS tot_unique_tails_dep, -- how many unique airplanes
 COUNT(DISTINCT airline) AS tot_unique_aircompanies_dep -- how many unique airlines were in service 
--- FROM prep_flights
 FROM{{ref('prep_flights')}}
 GROUP BY origin
 ),
@@ -22,7 +21,6 @@ SUM(diverted) AS arr_diverted, -- how many flights were diverted in total (depar
 SUM(CASE WHEN cancelled = 0 THEN 1 END) AS arr_n_flights_calc, -- how many flights actually occured in total (departures & arrivals)
 COUNT(DISTINCT tail_number) AS tot_unique_tails_arr, -- how many unique airplanes
 COUNT(DISTINCT airline) AS tot_unique_aircompanies_arr -- how many unique airlines were in service 
---FROM prep_flights
 FROM{{ref('prep_flights')}}
 GROUP BY dest
 ),
@@ -45,5 +43,5 @@ ON origin = dest
 )
 SELECT pa.city, pa.country, pa.name, ts.*
 FROM total_stats AS ts 
-JOIN {{ref('prep_airports')}}
+JOIN {{ref('prep_airports')}} AS pa USING(faa)
 
