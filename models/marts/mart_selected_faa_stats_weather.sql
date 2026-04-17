@@ -75,4 +75,4 @@ SELECT
     ts.*
 FROM total_stats AS ts
 JOIN {{ ref('prep_airports') }} AS pa
-    USING (faa);
+    USING (faa)
