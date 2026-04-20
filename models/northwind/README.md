@@ -2,6 +2,10 @@
 
 ## Business Problem
 Northwind’s raw data not directly usable for analytics due to inconsistent column names, repeated joins, and unclear revenue calculations. After processing we have a clean and standardized data pipeline for sales analysis.
+So step-by-step:
+- we had unstandardised 
+- too many joins
+- unconsistent and wrong revenue calculations
 
 ## Models Built
 - staging_orders: cleaned and standardized order data  
